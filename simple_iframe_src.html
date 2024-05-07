@@ -13,6 +13,7 @@
 
     // Setup the transferred port
     function initPort(e) {
+        console.log( " ~~~ -- -- -- initPort | " , e)
         port2 = e.ports[0];
         port2.onmessage = onMessage;
     }
