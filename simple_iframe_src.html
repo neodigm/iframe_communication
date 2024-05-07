@@ -27,6 +27,8 @@
     if( elB ){
         elB.addEventListener("click", ( ev )=>{
             console.log("~~~ --- clicked | ")
+            port2.postMessage(`iFrame button clicked`);
+
         })
     }
 </script>
