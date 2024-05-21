@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<button>Fire Event</button>
-<br>
-<hr>
-<ul></ul>
-<script>
-    const elB = document.querySelector("button")
-    const list = document.querySelector("ul");
-    let port2;
-
-    // Listen for the initial port transfer message
-    window.addEventListener("message", initPort);
-
-    // Setup the transferred port
-    function initPort(e) {
-        console.log( " ~~~ -- -- -- initPort | " , e)
-        port2 = e.ports[0];
-        port2.onmessage = onMessage;
-    }
-
-    // Handle messages received on port2
-    function onMessage(e) {
-        const listItem = document.createElement("li");
-        listItem.textContent = e.data;
-        list.appendChild(listItem);
-        port2.postMessage(`Message received by IFrame: "${e.data}"`);
-    }
-    if( elB ){
-        elB.addEventListener("click", ( ev )=>{
-            console.log("~~~ --- clicked | ")
-            port2.postMessage(`iFrame button clicked`);
-
-        })
-    }
-</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Fire Event</button>
+    <br>
+    <hr>
+    <ul></ul>
+    <script>
+        const elB = document.querySelector("button")
+        const list = document.querySelector("ul");
+        let port2;
+    
+        // Listen for the initial port transfer message
+        window.addEventListener("message", initPort);
+    
+        // Setup the transferred port
+        function initPort(e) {
+            console.log( " ~~~ -- -- -- initPort | " , e)
+            port2 = e.ports[0];
+            port2.onmessage = onMessage;
+        }
+    
+        // Handle messages received on port2
+        function onMessage(e) {
+            const listItem = document.createElement("li");
+            listItem.textContent = e.data;
+            list.appendChild(listItem);
+            port2.postMessage(`Message received by IFrame: "${e.data}"`);
+        }
+        if( elB ){
+            elB.addEventListener("click", ( ev )=>{
+                console.log("~~~ --- clicked | ")
+                port2.postMessage(`iFrame button clicked`);
+    
+            })
+        }
+    </script>
+</body>
+</html>
